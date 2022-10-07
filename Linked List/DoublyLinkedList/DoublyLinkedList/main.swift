@@ -191,34 +191,3 @@ extension DoublyLinkedList {
         }
     }
 }
-
-// MARK: - Test
-
-fileprivate func test() {
-    var list = DoublyLinkedList<Int>()
-    list.pushFront(data: 4)
-    list.insert(at: 0, data: 1)
-    list.pushBack(data: 5)
-    list.insert(at: 10, data: 7)
-    list.insert(at: 1, data: 2)
-    list.insert(at: 2, data: 3)
-    list.pushBack(data: 8)
-    list.insert(at: 5, data: 6)
-    list.popFront()
-    list.popFront()
-    list.popBack()
-    list.popBack()
-    list.erase(at: 2)
-    list.erase(at: 1)
-    list.erase(at: 1)
-    list.popFront()
-    print("\n[current elements]")
-    for element in list {
-        print(element.data ?? Int.min)
-    }
-    print("\n[head->next]: \(list.front?.data ?? Int.min)")
-    print("[tail->next]: \(list.back?.data ?? Int.min)")
-    print("[size]: \(list.size)")
-    print("-------end-------")
-}
-test()
