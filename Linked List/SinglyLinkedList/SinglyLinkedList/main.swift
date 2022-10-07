@@ -5,14 +5,14 @@
 //  Created by Byeongjo Koo on 2022/09/28.
 //
 
-struct SinglyLinkedList<T>: Sequence where T: Equatable, T: CustomStringConvertible {
+struct SinglyLinkedList<T>: Sequence where T: CustomStringConvertible {
     
     /// 첫 원소를 가리킵니다.
     private let head: Node
     /// 마지막 원소를 가리킵니다.
     private let tail: Node
     /// 현재 원소의 수.
-    private var elementsCount: Int
+    private var elementCount: Int
     
     // MARK: Initializer
     /**
@@ -22,7 +22,7 @@ struct SinglyLinkedList<T>: Sequence where T: Equatable, T: CustomStringConverti
     init() {
         head = Node(next: nil)
         tail = Node(next: nil)
-        elementsCount = 0
+        elementCount = 0
     }
     
     /// 제일 앞의 노드를 반환합니다.
@@ -42,7 +42,7 @@ struct SinglyLinkedList<T>: Sequence where T: Equatable, T: CustomStringConverti
     
     /// 리스트의 크기를 반환합니다.
     var size: Int {
-        elementsCount
+        elementCount
     }
     
     /// 반복자를 생성합니다.
@@ -61,7 +61,7 @@ struct SinglyLinkedList<T>: Sequence where T: Equatable, T: CustomStringConverti
         }
         newNode.next = head.next
         head.next = newNode
-        elementsCount += 1
+        elementCount += 1
     }
     /**
      새로운 노드를 제일 뒤에 추가합니다.
@@ -74,7 +74,7 @@ struct SinglyLinkedList<T>: Sequence where T: Equatable, T: CustomStringConverti
         }
         tail.next?.next = newNode
         tail.next = newNode
-        elementsCount += 1
+        elementCount += 1
     }
     /**
      특정 위치의 노드 앞에 새로운 노드를 추가합니다.
@@ -99,13 +99,13 @@ struct SinglyLinkedList<T>: Sequence where T: Equatable, T: CustomStringConverti
                 let newNode = Node(data: data)
                 newNode.next = previous?.next
                 previous?.next = newNode
-                elementsCount += 1
+                elementCount += 1
             }
         }
     }
     
     @discardableResult
-    mutating func popFront() -> Node? {
+    mutating func popFront() -> T? {
         if isEmpty {
             return nil
         } else {
@@ -114,8 +114,8 @@ struct SinglyLinkedList<T>: Sequence where T: Equatable, T: CustomStringConverti
             if head.next == nil {
                 tail.next = nil
             }
-            elementsCount -= 1
-            return front
+            elementCount -= 1
+            return front?.data
         }
     }
     
@@ -124,13 +124,13 @@ struct SinglyLinkedList<T>: Sequence where T: Equatable, T: CustomStringConverti
      - Parameter position: 삭제할 노드의 위치 정보.
     */
     @discardableResult
-    mutating func erase(at position: Int) -> Node? {
+    mutating func erase(at position: Int) -> T? {
         if isEmpty {
             return nil
         } else if position == 0 {
             return popFront()
         } else {
-            elementsCount -= 1
+            elementCount -= 1
             var current = head.next
             var previous: Node? = head
             for _ in 0 ..< position {
@@ -141,7 +141,7 @@ struct SinglyLinkedList<T>: Sequence where T: Equatable, T: CustomStringConverti
             if previous?.next == nil {
                 tail.next = previous
             }
-            return current
+            return current?.data
         }
     }
 }
