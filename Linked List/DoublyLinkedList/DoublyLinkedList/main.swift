@@ -17,14 +17,14 @@ struct DoublyLinkedList<T>: Sequence where T: CustomStringConvertible {
         elementCount = 0
     }
     
-    /// 제일 앞의 노드를 반환합니다.
-    var front: Node? {
-        head.next
+    /// 제일 앞의 원소를 반환합니다.
+    var front: T? {
+        head.next?.data
     }
     
-    /// 가장 뒤의 노드를 반환합니다.
-    var back: Node? {
-        tail.next
+    /// 가장 뒤의 원소를 반환합니다.
+    var back: T? {
+        tail.next?.data
     }
     
     /// 리스트가 비어있는지 여부를 반환합니다.

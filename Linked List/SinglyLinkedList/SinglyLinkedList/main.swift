@@ -25,14 +25,14 @@ struct SinglyLinkedList<T>: Sequence where T: CustomStringConvertible {
         elementCount = 0
     }
     
-    /// 제일 앞의 노드를 반환합니다.
-    var front: Node? {
-        head.next
+    /// 제일 앞의 원소를 반환합니다.
+    var front: T? {
+        head.next?.data
     }
     
-    /// 가장 뒤의 노드를 반환합니다.
-    var back: Node? {
-        tail.next
+    /// 가장 뒤의 원소를 반환합니다.
+    var back: T? {
+        tail.next?.data
     }
     
     /// 리스트가 비어있는지 여부를 반환합니다.
@@ -110,12 +110,12 @@ struct SinglyLinkedList<T>: Sequence where T: CustomStringConvertible {
             return nil
         } else {
             let front = front
-            head.next = front?.next
+            head.next = head.next?.next
             if head.next == nil {
                 tail.next = nil
             }
             elementCount -= 1
-            return front?.data
+            return front
         }
     }
     
