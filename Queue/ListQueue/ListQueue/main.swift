@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  ListQueue
+//  Queue
 //
 //  Created by Byeongjo Koo on 2022/10/09.
 //
@@ -192,8 +192,7 @@ extension List {
     }
 }
 
-
-struct ListQueue<T>  where T: CustomStringConvertible {
+struct Queue<T> where T: CustomStringConvertible {
     
     /// 저장공간 리스트.
     private var list: List<T>
